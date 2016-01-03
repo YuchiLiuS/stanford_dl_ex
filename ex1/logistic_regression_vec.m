@@ -19,3 +19,6 @@ function [f,g] = logistic_regression_vec(theta, X,y)
   %        Store the objective function value in 'f', and the gradient in 'g'.
   %
 %%% YOUR CODE HERE %%%
+  y_hat = bsxfun(@rdivide,1,1+exp(-theta' * X));
+  f = f - sum(bsxfun(@times,y,log(y_hat))+bsxfun(@times,1-y,log(1-y_hat)));
+  g = X * (y_hat - y)';
